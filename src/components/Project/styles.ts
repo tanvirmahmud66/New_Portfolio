@@ -67,11 +67,12 @@ export const Container = styled.section`
       footer{
         margin-top: auto;
         .tech-list{
-          display: flex;
+          display: grid;
+          grid-template-columns: auto auto auto auto;
           align-items: center;
-          gap: 2rem;
+          gap: .8rem;
           font-size: 1.4rem;
-          opacity: 0.6;
+          opacity: 0.5;
         }
       }
 

@@ -268,7 +268,7 @@ export function Main() {
       <Skills></Skills>
       <Educations></Educations>
       <Project></Project>
-      {/* <Contact></Contact> */}
+      <Contact></Contact>
     </Container>
   );
 }
