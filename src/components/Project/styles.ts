@@ -79,6 +79,25 @@ export const Container = styled.section`
     }
   }
 
+  .slug-name{
+    font-size:2.5rem;
+    font-weight:bold;
+    margin-bottom:1.5rem;
+  }
+
+  .button-section{
+    display:flex;
+    align-items:center;
+    gap:4rem;
+    padding-bottom:5px;
+    border-bottom:1px solid white;
+  }
+
+  .custom-height{
+    height:40em !important;
+  }
+
+
   @media (max-width: 960px){
     .projects{
       grid-template-columns: 1fr 1fr;

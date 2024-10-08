@@ -15,10 +15,10 @@ export function Header() {
   return (
     <Container className="header-fixed">
       <Router>
-        <HashLink smooth to="#home" className="logo">
+        <a href="/" className="logo">
           <span>{"< Tanvir"}</span>
           <span>{" Mahmud />"}</span>
-        </HashLink>
+        </a>
         
         <nav className={isActive ? 'active' : ''}>
           <NavHashLink smooth to="#home" onClick={closeMenu}>
