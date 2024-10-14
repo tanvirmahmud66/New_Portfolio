@@ -1,29 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Container } from './styles'
 import { HiEye } from "react-icons/hi";
 import { HiCube } from "react-icons/hi";
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
+import { FetchSingleProject } from '../../api/projectsAPI';
 
 const SingleProject = () => {
   
   const {slug} = useParams()
+  const[singleProject, setSingleProject] = useState<any | null>()
+
+
+  useEffect(()=>{
+    const loadProjectData = async()=>{
+      try {
+        const data = await FetchSingleProject(slug);
+        setSingleProject(data.data)
+      } catch (error) {
+        console.error("Error fetching project data", error);
+      }
+    }
+
+    loadProjectData();
+  },[])
   
   return (
     <Container>
-        <div className='slug-name'>{slug}</div>
+        <div className='slug-name'>{singleProject?.title}</div>
         <div className='button-section'>
-            <a href='#' target='_blank' style={{'color':'#23ce6b','display':'flex','alignItems':'center', 'gap':'.5rem'}}>
+            <a href={`${singleProject?.preview_link}`} target='_blank' style={{'color':'#23ce6b','display':'flex','alignItems':'center', 'gap':'.5rem'}}>
                 <HiEye/>
                 <span>Live</span>
             </a>
-            <a href='#' target='_blank' style={{'color':'#08C2FF','display':'flex', 'alignItems':'center','gap':'.5rem'}}>
+            <a href={`${singleProject?.source_link}`} target='_blank' style={{'color':'#08C2FF','display':'flex', 'alignItems':'center','gap':'.5rem'}}>
                 <HiCube />
                 <span>Source Repo</span>
             </a>
         </div>
 
+        {singleProject?.project_images?.length > 0 &&
         <div>
         <Carousel
             additionalTransfrom={0}
@@ -75,52 +92,47 @@ const SingleProject = () => {
             slidesToSlide={1}
             swipeable
             >
-                <img
-                    src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-                    style={{
-                    display: 'block',
-                    height: '100%',
-                    margin: 'auto',
-                    width: 'auto'
-                    }}
-                />
-                <img
-                    src="https://images.unsplash.com/photo-1549396535-c11d5c55b9df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
-                    style={{
-                    display: 'block',
-                    height: '100%',
-                    margin: 'auto',
-                    width: 'auto'
-                    }}
-                />
-                <img
-                    src="https://images.unsplash.com/photo-1550133730-695473e544be?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-                    style={{
-                    display: 'block',
-                    height: '100%',
-                    margin: 'auto',
-                    width: 'auto'
-                    }}
-                />
-                <img
-                    src="https://images.unsplash.com/photo-1550167164-1b67c2be3973?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-                    style={{
-                    display: 'block',
-                    height: '100%',
-                    margin: 'auto',
-                    width: 'auto'
-                    }}
-                />
-                <img
-                    src="https://images.unsplash.com/photo-1550338861-b7cfeaf8ffd8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-                    style={{
-                    display: 'block',
-                    height: 'auto',
-                    margin: 'auto',
-                    width: 'auto'
-                    }}
-                />
+                {singleProject?.project_images.map((each:any,index:any)=>(
+                    <img
+                        key={index}
+                        src={`${process.env.REACT_APP_BASE_URL}/${each.project_image}`}
+                        style={{
+                        display: 'block',
+                        height: '100%',
+                        margin: 'auto',
+                        width: 'auto'
+                        }}
+                    />
+                ))}
+               
             </Carousel>
+        </div>}
+
+        <div>
+            <div>
+                <h3>Description</h3>
+                <p>{singleProject?.description}</p>
+            </div>
+            <div>
+                <h3>Tech Stack</h3>
+                <div>
+                    <ul>
+                        <h4>Frontend</h4>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                    </ul>
+                    <ul>
+                        <h4>Backend</h4>
+                        <li>2</li>
+                        <li>2</li>
+                        <li>2</li>
+                        <li>2</li>
+                        <li>2</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </Container>
   )

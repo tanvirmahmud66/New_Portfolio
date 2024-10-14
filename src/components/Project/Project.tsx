@@ -39,7 +39,7 @@ export function Project() {
         <ScrollAnimation key={index} animateIn="flipInX">
           <div className="project">
             <header>
-              <Link to={`/project/${each.data.title}`}>
+              <Link to={`/project/${each.data.name}`}>
               <svg width="50" xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="#23ce6b" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"> <title>Open Project</title> <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path> </svg>
               </Link>
               <div className="project-links">

@@ -26,9 +26,19 @@ export const FetchProject = async () => {
     });
     
     data = await Promise.all(projectDetailsPromises);
-    console.log(data,"yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy")
     return data;
   } catch (error) {
     console.error("Error Fetching Data: ", error);
   }
 };
+
+
+export const FetchSingleProject = async(slug:any)=>{
+  try {
+    const response = await axiosInstance.get(`Projects/${slug}`)
+    console.log(response.data)
+    return response.data
+  } catch (error) {
+    console.error("Error Fetching Data: ",error)
+  }
+}
