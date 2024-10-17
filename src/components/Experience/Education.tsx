@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import ScrollAnimation from "react-animate-on-scroll";
 import { useEffect, useState } from "react";
-import ProgressBar from "../About/Progressbar";
+import ProgressBar from "../Skills/Progressbar";
 import { FetchSkills } from "../../api/skillsAPI";
 import {EducationTimeline} from "./TimelinveView";
 import educationImg from "../../assets/Education.svg"

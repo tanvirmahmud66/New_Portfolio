@@ -8,11 +8,12 @@ import { useEffect, useState } from "react"
 import { FetchPersonalInfo } from "../../api/personalAPI"
 import { FetchSocialLinks } from "../../api/socialLinksAPI"
 import resume from '../../assets/Vinayak_Kumar_Singh_Resume.pdf'
+import { PersonalInfoData } from "../../data/data"
 
 interface dataType {
   full_name: string;
   designation:string;
-  work_experience:string;
+  work_experience:number;
   bio:string;
   profile_picture:string;
   date_of_birth:string;
@@ -44,6 +45,7 @@ export function Hero () {
         setPersonalData(data.data);
       } catch (error) {
         console.error("Error Fetching Data...", error);
+        setPersonalData(PersonalInfoData)
       }
     }
 

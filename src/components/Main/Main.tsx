@@ -184,11 +184,6 @@ export function Main() {
                   "width": 20,
                   "height": 20
                 },
-                // {
-                //   "src": mysqlIcon,
-                //   "width": 20,
-                //   "height": 20
-                // },
                 {
                   "src": nodeIcon,
                   "width": 20,
@@ -209,11 +204,11 @@ export function Main() {
                   "width": 20,
                   "height": 20
                 },
-                // {
-                //   "src": vscodeIcon,
-                //   "width": 20,
-                //   "height": 20
-                // },
+                {
+                  "src": nodeIcon,
+                  "width": 20,
+                  "height": 20
+                },
                 {
                   "src": vueIcon,
                   "width": 20,

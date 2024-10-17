@@ -65,7 +65,7 @@ export function Project() {
             <footer>
               <p style={{'opacity':'.7', 'fontSize':'1.3rem'}}>Technology Used</p>
               <ul className="tech-list">
-                {each.data.backend_technologies
+                {each.data.technologies
                   .map((tech: { technology_name: string }, index: number) => (
                     <li key={index}>{tech.technology_name}</li>
                   ))}

@@ -6,12 +6,17 @@ import { HiCube } from "react-icons/hi";
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import { FetchSingleProject } from '../../api/projectsAPI';
+import { ProjectDetails } from './styles';
+
 
 const SingleProject = () => {
   
   const {slug} = useParams()
   const[singleProject, setSingleProject] = useState<any | null>()
-
+  const[frontend, setFrontend] = useState<any | null>()
+  const[backend, setBackend] = useState<any | null>()
+  const[server, setServer] = useState<any | null>()
+  const[other, setOther] = useState<any | null>()
 
   useEffect(()=>{
     const loadProjectData = async()=>{
@@ -20,11 +25,27 @@ const SingleProject = () => {
         setSingleProject(data.data)
       } catch (error) {
         console.error("Error fetching project data", error);
+      } finally {
+        
       }
     }
 
     loadProjectData();
   },[])
+
+
+  useEffect(()=>{
+    if(singleProject){
+        const frontend = singleProject.technologies.filter((each:any)=> each.sector === "Frontend");
+        const backend = singleProject.technologies.filter((each:any)=> each.sector === "Backend");
+        const server = singleProject.technologies.filter((each:any)=> each.sector === "Server");
+        const other = singleProject.technologies.filter((each:any)=> each.sector === "Other");
+        setFrontend(frontend);
+        setBackend(backend);
+        setServer(server)
+        setOther(other);
+    }
+  },[singleProject])
   
   return (
     <Container>
@@ -98,7 +119,7 @@ const SingleProject = () => {
                         src={`${process.env.REACT_APP_BASE_URL}/${each.project_image}`}
                         style={{
                         display: 'block',
-                        height: '100%',
+                        height: 'auto',
                         margin: 'auto',
                         width: 'auto'
                         }}
@@ -108,32 +129,45 @@ const SingleProject = () => {
             </Carousel>
         </div>}
 
-        <div>
-            <div>
-                <h3>Description</h3>
-                <p>{singleProject?.description}</p>
+        <ProjectDetails>
+            <div className='description'>
+                <h3 className='title'>Description</h3>
+                <p className='details'>{singleProject?.description}</p>
             </div>
-            <div>
-                <h3>Tech Stack</h3>
-                <div>
-                    <ul>
-                        <h4>Frontend</h4>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                    </ul>
-                    <ul>
-                        <h4>Backend</h4>
-                        <li>2</li>
-                        <li>2</li>
-                        <li>2</li>
-                        <li>2</li>
-                        <li>2</li>
-                    </ul>
+            <div className='stack'>
+                <h3 className='stack-heading'>Tech Stack</h3>
+                <div className='stack-wrapper'>
+                    {frontend?.length > 0 &&
+                    <ul className='stack-ul'>
+                        <h4 className='ul-title'>Frontend</h4>
+                        {frontend?.map((each:any,index:any)=>(
+                            <li key={index} className='ul-item'>{each.technology_name}</li>
+                        ))}
+                    </ul>}
+                    {backend?.length > 0 && 
+                    <ul className='stack-ul'>
+                        <h4 className='ul-title'>Backend</h4>
+                        {backend?.map((each:any,index:any)=>(
+                            <li key={index} className='ul-item'>{each.technology_name}</li>
+                        ))}
+                    </ul>}
+                    {server?.length > 0 &&
+                    <ul className='stack-ul'>
+                        <h4 className='ul-title'>Server</h4>
+                        {server?.map((each:any,index:any)=>(
+                            <li key={index} className='ul-item'>{each.technology_name}</li>
+                        ))}
+                    </ul>}
+                    {other?.length > 0 && 
+                    <ul className='stack-ul'>
+                        <h4 className='ul-title'>Other</h4>
+                        {other?.map((each:any,index:any)=>(
+                            <li key={index} className='ul-item'>{each.technology_name}</li>
+                        ))}
+                    </ul>}
                 </div>
             </div>
-        </div>
+        </ProjectDetails>
     </Container>
   )
 }

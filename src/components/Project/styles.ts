@@ -91,6 +91,7 @@ export const Container = styled.section`
     gap:4rem;
     padding-bottom:5px;
     border-bottom:1px solid white;
+    margin-bottom:20px
   }
 
   .custom-height{
@@ -107,6 +108,49 @@ export const Container = styled.section`
   @media (max-width: 740px){
     .projects{
       grid-template-columns: 1fr;
+    }
+  }
+`
+
+
+export const ProjectDetails = styled.div`
+  margin-top:5rem;
+
+  .description{
+    margin-bottom: 30px;
+
+    .title{
+      font-size:2.5rem;
+      margin-bottom: 10px;
+    }
+    .details{
+      font-size:1.7rem;
+      opacity:.7;
+    }
+  }
+
+  .stack{
+    
+    .stack-heading{
+      font-size:2rem;
+      margin-bottom:10px
+    }
+    .stack-wrapper{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:15rem;
+      
+      .stack-ul{
+        .ul-title{
+          margin-bottom:5px;
+          border-bottom: 1px solid green;
+          padding-bottom:5px;
+        }
+        .ul-item{
+          margin:10px 0;
+          opacity: .7;
+        }
+      }
     }
   }
 `

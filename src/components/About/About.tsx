@@ -2,8 +2,7 @@ import { Container } from "./styles";
 import ScrollAnimation from "react-animate-on-scroll";
 import { useEffect, useState } from "react";
 import { FetchPersonalInfo } from "../../api/personalAPI";
-import ProgressBar from "./Progressbar";
-import { FetchSkills } from "../../api/skillsAPI";
+import { PersonalInfoData } from "../../data/data";
 
 interface dataType{
   bio:string | undefined ;
@@ -16,16 +15,17 @@ interface dataType{
 export function About() {
 
   const [personalData, setPersonalData] = useState<dataType | null>(null);
-  
+  const[staticData, setStaticData] = useState<boolean>(false);
 
   useEffect(()=>{
     const loadDataFetching = async()=>{
       try {
       const data = await FetchPersonalInfo()
-      const skills = await FetchSkills()
         setPersonalData(data.data);
       } catch (error) {
         console.error("Error Fetching Data...", error);
+        setPersonalData(PersonalInfoData);
+        setStaticData(true);
       }
     }
 
@@ -50,7 +50,9 @@ export function About() {
       </div>
       <div className="about-image">
         <ScrollAnimation animateIn="fadeInRight" delay={0.20 * 1000}>
-          <img src={`${process.env.REACT_APP_BASE_URL}${personalData?.profile_picture}`} alt="Vinayak Singh" />
+          {staticData?
+          <img src={`${personalData?.profile_picture}`} alt="Tanvir Mahmud" />:
+          <img src={`${process.env.REACT_APP_BASE_URL}${personalData?.profile_picture}`} alt="Tanvir Mahmud" />}
         </ScrollAnimation>
       </div>
     </Container>

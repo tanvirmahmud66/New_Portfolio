@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import ScrollAnimation from "react-animate-on-scroll";
 import { useEffect, useState } from "react";
-import ProgressBar from "../About/Progressbar";
+import ProgressBar from "./Progressbar";
 import { FetchSkills } from "../../api/skillsAPI";
 
 
@@ -37,7 +37,6 @@ export function Skills() {
           <div className="skill">
             <div className="body">
                 <ScrollAnimation animateIn="fadeInLeft" delay={0.4 * 1000}>
-                  <h3>Here are my main skills</h3>
                 </ScrollAnimation>
                 <div className="d-flex-between">
                   <div className="compound">
