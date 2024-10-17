@@ -13,6 +13,18 @@ export interface PersonalInfo{
     permanent_address:string;
 }
 
+export interface SkillsType{
+    skill_name:string;
+    skill_level:string;
+    years_of_experiences:number;
+    category:string;
+    certificate:string | null;
+    skill_description:string;
+    proficiency_score:number;
+    icon:string;
+}
+
+
 export const PersonalInfoData: PersonalInfo = {
     full_name:"Tanvir Mahmud",
     designation:"Jr Software Engineer",
@@ -27,3 +39,53 @@ export const PersonalInfoData: PersonalInfo = {
     present_address:"",
     permanent_address:"",
 }
+
+export const SkillsData:SkillsType [] = [
+    {
+        skill_name:"HTML5",
+        skill_level:"Advanced",
+        years_of_experiences:1,
+        category:"Programming",
+        certificate:"",
+        skill_description:"",
+        proficiency_score:12,
+        icon:""
+    },{
+        skill_name:"HTML5",
+        skill_level:"Advanced",
+        years_of_experiences:1,
+        category:"Programming",
+        certificate:"",
+        skill_description:"",
+        proficiency_score:12,
+        icon:""
+    },{
+        skill_name:"HTML5",
+        skill_level:"Advanced",
+        years_of_experiences:1,
+        category:"Programming",
+        certificate:"",
+        skill_description:"",
+        proficiency_score:12,
+        icon:""
+    },{
+        skill_name:"HTML5",
+        skill_level:"Advanced",
+        years_of_experiences:1,
+        category:"Programming",
+        certificate:"",
+        skill_description:"",
+        proficiency_score:12,
+        icon:""
+    },{
+        skill_name:"HTML5",
+        skill_level:"Advanced",
+        years_of_experiences:1,
+        category:"Programming",
+        certificate:"",
+        skill_description:"",
+        proficiency_score:12,
+        icon:""
+    },
+]
+

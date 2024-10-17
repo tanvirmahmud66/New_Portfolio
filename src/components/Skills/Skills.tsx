@@ -3,6 +3,7 @@ import ScrollAnimation from "react-animate-on-scroll";
 import { useEffect, useState } from "react";
 import ProgressBar from "./Progressbar";
 import { FetchSkills } from "../../api/skillsAPI";
+import { SkillsType, SkillsData } from "../../data/data";
 
 
 interface skillType{
@@ -13,7 +14,8 @@ interface skillType{
 
 export function Skills() {
 
-  const [skillsData, setSkillsData] = useState<skillType[] | null>(null);
+  const [skillsData, setSkillsData] = useState<skillType[] | null | SkillsType[]>(null);
+  const [staticData, setStaticData] = useState<boolean>(false);
 
   useEffect(()=>{
     const loadDataFetching = async()=>{
@@ -22,6 +24,7 @@ export function Skills() {
         setSkillsData(skills.data);
       } catch (error) {
         console.error("Error Fetching Data...", error);
+        setSkillsData(SkillsData)
       }
     }
 

@@ -7,12 +7,6 @@ import {ExperienceTimeline} from "./TimelinveView";
 import experiencedImg from "../../assets/experienced.svg"
 
 
-interface skillType{
-  skill_name:string;
-  proficiency_score:number;
-  icon:string;
-}
-
 export function Experience() {
   return (
     <Container id="experiences">
